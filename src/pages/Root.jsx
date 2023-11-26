@@ -2,7 +2,9 @@ import React from "react";
 import {Outlet} from "react-router-dom";
 import Appbar from "../MUI-components/Appbar";
 import Drawerr from "../MUI-components/Drawerr";
-const drawerWidth  = 240;
+import {Box} from "@mui/material";
+
+const drawerWidth = 240;
 
 const Root = () => {
     return (
@@ -10,8 +12,9 @@ const Root = () => {
             <Appbar drawerWidth={drawerWidth}/>
 
             <Drawerr drawerWidth={drawerWidth}/>
-
-            <Outlet/>
+            <Box sx={{ml: `${drawerWidth}px`, display: "flex", justifyContent: "center", mt : "66px"}}>
+                <Outlet/>
+            </Box>
         </>
     );
 };
