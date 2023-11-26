@@ -16,9 +16,7 @@ const Home = () => {
                 <IconButton sx={{position : "absolute", top: "0", right: "0"}}>
                     <Close sx={{fontSize: "20px"}} />
                 </IconButton>
-
             </Paper>
-
         </Box>
     );
 }
