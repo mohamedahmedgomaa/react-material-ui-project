@@ -1,20 +1,43 @@
-import React from "react";
+import React, {useState} from "react";
 import {Outlet} from "react-router-dom";
 import Appbar from "../MUI-components/Appbar";
 import Drawerr from "../MUI-components/Drawerr";
-import {Box} from "@mui/material";
+import {Box, CssBaseline} from "@mui/material";
+import {ThemeProvider, createTheme} from '@mui/material/styles';
+import {teal} from '@mui/material/colors';
 
 const drawerWidth = 240;
 
 const Root = () => {
+    const [myMode, setMyMode] = useState(
+        localStorage.getItem("currentMode") === null ? "light"
+        : localStorage.getItem("currentMode") === "light" ? "light" : "dark"
+    );
+
+    const darkTheme = createTheme({
+        palette: {
+            mode: myMode,
+            moha: {
+                main: '#E3D026',
+                light: '#E9DB5D',
+                dark: '#A29415',
+                contrastText: '#242105',
+            },
+        },
+    });
+
     return (
         <>
-            <Appbar drawerWidth={drawerWidth}/>
+            <ThemeProvider theme={darkTheme}>
+                <CssBaseline/>
+                <Appbar drawerWidth={drawerWidth}/>
 
-            <Drawerr drawerWidth={drawerWidth}/>
-            <Box component="main" sx={{ml: `${drawerWidth}px`, display: "flex", justifyContent: "center", mt : "66px"}}>
-                <Outlet/>
-            </Box>
+                <Drawerr setMyMode={setMyMode} drawerWidth={drawerWidth}/>
+                <Box component="main"
+                     sx={{ml: `${drawerWidth}px`, display: "flex", justifyContent: "center", mt: "66px"}}>
+                    <Outlet/>
+                </Box>
+            </ThemeProvider>
         </>
     );
 };

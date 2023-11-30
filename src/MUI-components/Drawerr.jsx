@@ -1,14 +1,28 @@
 import React from "react";
-import {Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar} from "@mui/material";
+import {
+    Button,
+    Divider,
+    Drawer, IconButton,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    useTheme,
+} from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import CreateIcon from '@mui/icons-material/Create';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-const Drawerr = ({drawerWidth}) => {
+const Drawerr = ({drawerWidth, setMyMode}) => {
     const navigate = useNavigate();
+    const theme = useTheme();
+
     return (
         <>
             <Drawer
@@ -23,19 +37,28 @@ const Drawerr = ({drawerWidth}) => {
                 variant="permanent"
                 anchor="left"
             >
-                <Toolbar/>
-                <Divider/>
+
 
                 <List>
+                    <ListItem disablePadding sx={{ display: "flex", justifyContent: "center", mb: "14px" }}>
+                        <IconButton onClick={() => {
+                            localStorage.setItem("currentMode", theme.palette.mode === "light" ? "dark" : "light")
+                            setMyMode(theme.palette.mode === "light" ? "dark" : "light")
+                        }} color="inherit">
+                            {theme.palette.mode === 'dark' ? <Brightness7Icon/> : <Brightness4Icon/>}
+                        </IconButton>
+                    </ListItem>
+
+                    <Divider/>
 
                     <ListItem disablePadding>
                         <ListItemButton onClick={() => {
                             navigate("/")
                         }}>
                             <ListItemIcon>
-                                <HomeIcon />
+                                <HomeIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Home" />
+                            <ListItemText primary="Home"/>
                         </ListItemButton>
                     </ListItem>
 
@@ -44,9 +67,9 @@ const Drawerr = ({drawerWidth}) => {
                             navigate("/create")
                         }}>
                             <ListItemIcon>
-                                <CreateIcon />
+                                <CreateIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Create" />
+                            <ListItemText primary="Create"/>
                         </ListItemButton>
                     </ListItem>
 
@@ -56,9 +79,9 @@ const Drawerr = ({drawerWidth}) => {
                             navigate("/")
                         }}>
                             <ListItemIcon>
-                                <PersonIcon />
+                                <PersonIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Profile" />
+                            <ListItemText primary="Profile"/>
                         </ListItemButton>
                     </ListItem>
 
@@ -67,9 +90,9 @@ const Drawerr = ({drawerWidth}) => {
                             navigate("/")
                         }}>
                             <ListItemIcon>
-                                <SettingsIcon />
+                                <SettingsIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Settings" />
+                            <ListItemText primary="Settings"/>
                         </ListItemButton>
                     </ListItem>
 
@@ -78,9 +101,9 @@ const Drawerr = ({drawerWidth}) => {
                             navigate("/")
                         }}>
                             <ListItemIcon>
-                                <LogoutIcon />
+                                <LogoutIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Logout" />
+                            <ListItemText primary="Logout"/>
                         </ListItemButton>
                     </ListItem>
 
