@@ -18,7 +18,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-const Drawerr = ({drawerWidth, setMyMode}) => {
+const Drawerr = ({drawerWidth, setMyMode, noneORBlock,drawerType}) => {
     const navigate = useNavigate();
     const theme = useTheme();
     const currentLocation = useLocation();
@@ -32,6 +32,13 @@ const Drawerr = ({drawerWidth, setMyMode}) => {
         <>
             <Drawer
                 sx={{
+                    display: {xs: noneORBlock, sm: "block"},
+                    // [theme.breakpoints.down('md')]: {
+                    //     backgroundColor: theme.palette.secondary.main,
+                    // },
+                    // [theme.breakpoints.up('md')]: {
+                    //     backgroundColor: theme.palette.secondary.main,
+                    // },
                     width: `${drawerWidth}px`,
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
@@ -39,8 +46,9 @@ const Drawerr = ({drawerWidth, setMyMode}) => {
                         boxSizing: 'border-box',
                     },
                 }}
-                variant="permanent"
+                variant={drawerType}
                 anchor="left"
+                open={true}
             >
                 <List>
                     <ListItem disablePadding sx={{display: "flex", justifyContent: "center", mb: "14px"}}>

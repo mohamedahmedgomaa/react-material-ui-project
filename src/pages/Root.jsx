@@ -43,15 +43,18 @@ const Root = () => {
         },
     });
 
+    const [noneORBlock, setNoneORBlock] = useState("none");
+    const [drawerType, setDrawerType] = useState("permanent"); // permanent , temporary
+
     return (
         <>
             <ThemeProvider theme={darkTheme}>
                 <CssBaseline/>
-                <Appbar drawerWidth={drawerWidth}/>
+                <Appbar drawerWidth={drawerWidth} setNoneORBlock={setNoneORBlock} setDrawerType={setDrawerType}/>
 
-                <Drawerr setMyMode={setMyMode} drawerWidth={drawerWidth}/>
+                <Drawerr setMyMode={setMyMode} drawerWidth={drawerWidth} noneORBlock={noneORBlock} drawerType={drawerType}/>
                 <Box component="main"
-                     sx={{ml: `${drawerWidth}px`, display: "flex", justifyContent: "center", mt: "66px"}}>
+                     sx={{ml: {sm: `${drawerWidth}px`}, display: "flex", justifyContent: "center", mt: "66px"}}>
                     <Outlet/>
                 </Box>
             </ThemeProvider>
