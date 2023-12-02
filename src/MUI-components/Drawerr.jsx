@@ -24,7 +24,9 @@ const Drawerr = ({drawerWidth, setMyMode}) => {
     const currentLocation = useLocation();
 
     const BGColor = (current) => {
+
         return currentLocation.pathname === current ? theme.palette.favColor.main : null
+
     }
     return (
         <>
