@@ -18,7 +18,10 @@ import {useLocation, useNavigate} from "react-router-dom";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
+
+
 const Drawerr = ({drawerWidth, setMyMode, noneORBlock,drawerType}) => {
+
     const navigate = useNavigate();
     const theme = useTheme();
     const currentLocation = useLocation();
