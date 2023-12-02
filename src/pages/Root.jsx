@@ -4,7 +4,7 @@ import Appbar from "../MUI-components/Appbar";
 import Drawerr from "../MUI-components/Drawerr";
 import {Box, CssBaseline} from "@mui/material";
 import {ThemeProvider, createTheme} from '@mui/material/styles';
-import {teal} from '@mui/material/colors';
+import {grey} from '@mui/material/colors';
 
 const drawerWidth = 240;
 
@@ -17,12 +17,29 @@ const Root = () => {
     const darkTheme = createTheme({
         palette: {
             mode: myMode,
-            moha: {
-                main: '#E3D026',
-                light: '#E9DB5D',
-                dark: '#A29415',
-                contrastText: '#242105',
-            },
+            ...(myMode === "light" ?
+                {
+                    moha: {
+                        main: '#E3D026',
+                        light: '#E9DB5D',
+                        dark: '#A29415',
+                        contrastText: '#242105',
+                    },
+                    favColor: {
+                        main : grey[300]
+                    }
+                } : {
+                    moha: {
+                        main: '#E3D026',
+                        light: '#E9DB5D',
+                        dark: '#A29415',
+                        contrastText: '#242105',
+                    },
+                    favColor: {
+                        main : grey[800]
+                    }
+                }),
+
         },
     });
 

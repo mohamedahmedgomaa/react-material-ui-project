@@ -1,6 +1,5 @@
 import React from "react";
 import {
-    Button,
     Divider,
     Drawer, IconButton,
     List,
@@ -15,14 +14,18 @@ import CreateIcon from '@mui/icons-material/Create';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 const Drawerr = ({drawerWidth, setMyMode}) => {
     const navigate = useNavigate();
     const theme = useTheme();
+    const currentLocation = useLocation();
 
+    const BGColor = (current) => {
+        return currentLocation.pathname === current ? theme.palette.favColor.main : null
+    }
     return (
         <>
             <Drawer
@@ -37,10 +40,8 @@ const Drawerr = ({drawerWidth, setMyMode}) => {
                 variant="permanent"
                 anchor="left"
             >
-
-
                 <List>
-                    <ListItem disablePadding sx={{ display: "flex", justifyContent: "center", mb: "14px" }}>
+                    <ListItem disablePadding sx={{display: "flex", justifyContent: "center", mb: "14px"}}>
                         <IconButton onClick={() => {
                             localStorage.setItem("currentMode", theme.palette.mode === "light" ? "dark" : "light")
                             setMyMode(theme.palette.mode === "light" ? "dark" : "light")
@@ -51,7 +52,7 @@ const Drawerr = ({drawerWidth, setMyMode}) => {
 
                     <Divider/>
 
-                    <ListItem disablePadding>
+                    <ListItem sx={{bgcolor: BGColor("/")}} disablePadding>
                         <ListItemButton onClick={() => {
                             navigate("/")
                         }}>
@@ -62,7 +63,7 @@ const Drawerr = ({drawerWidth, setMyMode}) => {
                         </ListItemButton>
                     </ListItem>
 
-                    <ListItem disablePadding>
+                    <ListItem sx={{bgcolor: BGColor("/create")}} disablePadding>
                         <ListItemButton onClick={() => {
                             navigate("/create")
                         }}>
@@ -74,7 +75,7 @@ const Drawerr = ({drawerWidth, setMyMode}) => {
                     </ListItem>
 
 
-                    <ListItem disablePadding>
+                    <ListItem sx={{bgcolor: BGColor("/")}} disablePadding>
                         <ListItemButton onClick={() => {
                             navigate("/")
                         }}>
@@ -85,7 +86,7 @@ const Drawerr = ({drawerWidth, setMyMode}) => {
                         </ListItemButton>
                     </ListItem>
 
-                    <ListItem disablePadding>
+                    <ListItem sx={{bgcolor: BGColor("/")}} disablePadding>
                         <ListItemButton onClick={() => {
                             navigate("/")
                         }}>
@@ -96,7 +97,7 @@ const Drawerr = ({drawerWidth, setMyMode}) => {
                         </ListItemButton>
                     </ListItem>
 
-                    <ListItem disablePadding>
+                    <ListItem sx={{bgcolor: BGColor("/")}} disablePadding>
                         <ListItemButton onClick={() => {
                             navigate("/")
                         }}>
