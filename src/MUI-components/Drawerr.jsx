@@ -18,7 +18,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-const Drawerr = ({drawerWidth, setMode, noneORBlock,drawerType}) => {
+const Drawerr = ({drawerWidth, setMode, noneORBlock,drawerType,hideDrawer}) => {
     const navigate = useNavigate();
     const theme = useTheme();
     const currentLocation = useLocation();
@@ -49,6 +49,9 @@ const Drawerr = ({drawerWidth, setMode, noneORBlock,drawerType}) => {
                 variant={drawerType}
                 anchor="left"
                 open={true}
+                onClose={() => {
+                    hideDrawer()
+                }}
             >
                 <List>
                     <ListItem disablePadding sx={{display: "flex", justifyContent: "center", mb: "14px"}}>
