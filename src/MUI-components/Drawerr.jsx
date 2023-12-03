@@ -18,10 +18,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-
-
-const Drawerr = ({drawerWidth, setMyMode, noneORBlock,drawerType}) => {
-
+const Drawerr = ({drawerWidth, setMode, noneORBlock,drawerType}) => {
     const navigate = useNavigate();
     const theme = useTheme();
     const currentLocation = useLocation();
@@ -57,7 +54,7 @@ const Drawerr = ({drawerWidth, setMyMode, noneORBlock,drawerType}) => {
                     <ListItem disablePadding sx={{display: "flex", justifyContent: "center", mb: "14px"}}>
                         <IconButton onClick={() => {
                             localStorage.setItem("currentMode", theme.palette.mode === "light" ? "dark" : "light")
-                            setMyMode(theme.palette.mode === "light" ? "dark" : "light")
+                            setMode(theme.palette.mode === "light" ? "dark" : "light")
                         }} color="inherit">
                             {theme.palette.mode === 'dark' ? <Brightness7Icon/> : <Brightness4Icon/>}
                         </IconButton>

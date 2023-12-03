@@ -4,36 +4,32 @@ import Appbar from "../MUI-components/Appbar";
 import Drawerr from "../MUI-components/Drawerr";
 import {Box, CssBaseline} from "@mui/material";
 import {ThemeProvider, createTheme} from '@mui/material/styles';
-import {grey} from '@mui/material/colors';
+import {cyan, deepPurple,grey} from '@mui/material/colors';
 
 const drawerWidth = 240;
 
 const Root = () => {
-    const [myMode, setMyMode] = useState(
+    const [mode, setMode] = useState(
         localStorage.getItem("currentMode") === null ? "light"
-        : localStorage.getItem("currentMode") === "light" ? "light" : "dark"
+            : localStorage.getItem("currentMode") === "light" ? "light" : "dark"
     );
 
     const darkTheme = createTheme({
+
         palette: {
-            mode: myMode,
-            ...(myMode === "light" ?
-                {
+            mode,
+            ...(mode === 'light'
+                ? {
                     moha: {
-                        main: '#E3D026',
-                        light: '#E9DB5D',
-                        dark: '#A29415',
-                        contrastText: '#242105',
+                        main: deepPurple[600],
                     },
                     favColor: {
                         main : grey[300]
                     }
-                } : {
+                }
+                : {
                     moha: {
-                        main: '#E3D026',
-                        light: '#E9DB5D',
-                        dark: '#A29415',
-                        contrastText: '#242105',
+                        main: cyan[700],
                     },
                     favColor: {
                         main : grey[800]
@@ -52,7 +48,7 @@ const Root = () => {
                 <CssBaseline/>
                 <Appbar drawerWidth={drawerWidth} setNoneORBlock={setNoneORBlock} setDrawerType={setDrawerType}/>
 
-                <Drawerr setMyMode={setMyMode} drawerWidth={drawerWidth} noneORBlock={noneORBlock} drawerType={drawerType}/>
+                <Drawerr setMode={setMode} drawerWidth={drawerWidth} noneORBlock={noneORBlock} drawerType={drawerType}/>
                 <Box component="main"
                      sx={{ml: {sm: `${drawerWidth}px`}, display: "flex", justifyContent: "center", mt: "66px"}}>
                     <Outlet/>
