@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useState,useMemo} from "react";
 import {Outlet} from "react-router-dom";
 import Appbar from "../MUI-components/Appbar";
 import Drawerr from "../MUI-components/Drawerr";
-import {Box, CssBaseline} from "@mui/material";
-import {ThemeProvider, createTheme} from '@mui/material/styles';
-import {cyan, deepPurple,grey} from '@mui/material/colors';
+import {Box, createTheme, CssBaseline} from "@mui/material";
+import {ThemeProvider} from '@mui/material/styles';
+import getDesignTokens from "../styles/MyTheme";
 
 const drawerWidth = 240;
 
@@ -13,31 +13,6 @@ const Root = () => {
         localStorage.getItem("currentMode") === null ? "light"
             : localStorage.getItem("currentMode") === "light" ? "light" : "dark"
     );
-
-    const darkTheme = createTheme({
-
-        palette: {
-            mode,
-            ...(mode === 'light'
-                ? {
-                    moha: {
-                        main: deepPurple[600],
-                    },
-                    favColor: {
-                        main : grey[300]
-                    }
-                }
-                : {
-                    moha: {
-                        main: cyan[700],
-                    },
-                    favColor: {
-                        main : grey[800]
-                    }
-                }),
-
-        },
-    });
 
     const [noneORBlock, setNoneORBlock] = useState("none");
     const [drawerType, setDrawerType] = useState("permanent"); // permanent , temporary
@@ -50,6 +25,9 @@ const Root = () => {
         setDrawerType("permanent")
         setNoneORBlock("none")
     }
+
+    // Update the theme only if the mode changes
+    const darkTheme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
     return (
         <>

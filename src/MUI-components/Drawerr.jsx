@@ -18,16 +18,37 @@ import {useLocation, useNavigate} from "react-router-dom";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-const Drawerr = ({drawerWidth, setMode, noneORBlock,drawerType,hideDrawer}) => {
+const Drawerr = ({drawerWidth, setMode, noneORBlock, drawerType, hideDrawer}) => {
     const navigate = useNavigate();
     const theme = useTheme();
     const currentLocation = useLocation();
 
     const BGColor = (current) => {
-
-        return currentLocation.pathname === current ? theme.palette.favColor.main : null
-
+        return currentLocation.pathname === current ? theme.palette.favColor.main : null;
     }
+
+    const myList = [
+        {
+            text: "Home",
+            icon: <HomeIcon/>,
+            path: "/"
+        },
+        {
+            text: "Create",
+            icon: <CreateIcon/>,
+            path: "/create"
+        },
+        {
+            text: "Profile",
+            icon: <PersonIcon/>,
+            path: "/"
+        },
+        {
+            text: "Settings",
+            icon: <SettingsIcon/>,
+            path: "/create"
+        },
+    ];
     return (
         <>
             <Drawer
@@ -65,50 +86,20 @@ const Drawerr = ({drawerWidth, setMode, noneORBlock,drawerType,hideDrawer}) => {
 
                     <Divider/>
 
-                    <ListItem sx={{bgcolor: BGColor("/")}} disablePadding>
-                        <ListItemButton onClick={() => {
-                            navigate("/")
-                        }}>
-                            <ListItemIcon>
-                                <HomeIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary="Home"/>
-                        </ListItemButton>
-                    </ListItem>
-
-                    <ListItem sx={{bgcolor: BGColor("/create")}} disablePadding>
-                        <ListItemButton onClick={() => {
-                            navigate("/create")
-                        }}>
-                            <ListItemIcon>
-                                <CreateIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary="Create"/>
-                        </ListItemButton>
-                    </ListItem>
-
-
-                    <ListItem sx={{bgcolor: BGColor("/")}} disablePadding>
-                        <ListItemButton onClick={() => {
-                            navigate("/")
-                        }}>
-                            <ListItemIcon>
-                                <PersonIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary="Profile"/>
-                        </ListItemButton>
-                    </ListItem>
-
-                    <ListItem sx={{bgcolor: BGColor("/")}} disablePadding>
-                        <ListItemButton onClick={() => {
-                            navigate("/")
-                        }}>
-                            <ListItemIcon>
-                                <SettingsIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary="Settings"/>
-                        </ListItemButton>
-                    </ListItem>
+                    {myList.map((list) => {
+                        return (
+                            <ListItem sx={{bgcolor: BGColor(list.path)}} disablePadding>
+                                <ListItemButton onClick={() => {
+                                    navigate(list.path)
+                                }}>
+                                    <ListItemIcon>
+                                        {list.icon}
+                                    </ListItemIcon>
+                                    <ListItemText primary={list.text}/>
+                                </ListItemButton>
+                            </ListItem>
+                        )
+                    })}
 
                     <ListItem sx={{bgcolor: BGColor("/")}} disablePadding>
                         <ListItemButton onClick={() => {
