@@ -88,7 +88,7 @@ const Drawerr = ({drawerWidth, setMode, noneORBlock, drawerType, hideDrawer}) =>
 
                     {myList.map((list) => {
                         return (
-                            <ListItem sx={{bgcolor: BGColor(list.path)}} disablePadding>
+                            <ListItem key={list.id} sx={{bgcolor: BGColor(list.path)}} disablePadding>
                                 <ListItemButton onClick={() => {
                                     navigate(list.path)
                                 }}>

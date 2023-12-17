@@ -20,7 +20,7 @@ const Create = () => {
     const [price, setPrice] = useState(0);
 
     return (
-        <Box sx={{width: "380px"}} component="form">
+        <Box autocomplete="off" sx={{width: "380px"}} component="form">
             <TextField
                 fullWidth
                 onChange={(e) => {
